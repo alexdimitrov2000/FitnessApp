@@ -29,6 +29,7 @@
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 3;
             });
 
             services.AddDbContext<FitnessDbContext>(options =>
@@ -41,6 +42,11 @@
             //services.AddDomainServices();
 
             //services.AddAutoMapper();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.SignIn.RequireConfirmedEmail = false;
+            });
 
             services.AddMvc(options =>
             {
