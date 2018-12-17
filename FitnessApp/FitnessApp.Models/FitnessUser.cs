@@ -15,5 +15,7 @@
         public decimal? Height { get; set; }
 
         public decimal? BodyFat { get; set; }
+
+        public Image ProfilePicture { get; set; }
     }
 }
