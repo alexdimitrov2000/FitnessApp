@@ -77,6 +77,8 @@ namespace FitnessApp.Data.Migrations
 
                     b.Property<decimal?>("Height");
 
+                    b.Property<bool>("IsActive");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");

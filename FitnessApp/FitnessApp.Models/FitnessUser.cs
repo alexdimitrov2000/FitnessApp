@@ -31,6 +31,8 @@
 
         public decimal? BodyFat { get; set; }
 
+        public bool IsActive { get; set; } = true;
+
         public Image ProfilePicture { get; set; }
 
         public ICollection<Like> Likes { get; set; }

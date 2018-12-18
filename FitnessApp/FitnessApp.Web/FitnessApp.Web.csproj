@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FitnessApp.Data\FitnessApp.Data.csproj" />
+    <ProjectReference Include="..\FitnessApp.Services\FitnessApp.Services.csproj" />
   </ItemGroup>
 
 </Project>
