@@ -1,4 +1,4 @@
-﻿namespace FitnessApp.Common
+﻿namespace FitnessApp.Common.Constants
 {
     public static class ValidationConstants
     {

@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessApp.Web", "FitnessApp.Web\FitnessApp.Web.csproj", "{61744E47-0ADA-4499-A7F0-C9B0B4DDBE8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessApp.Web", "FitnessApp.Web\FitnessApp.Web.csproj", "{61744E47-0ADA-4499-A7F0-C9B0B4DDBE8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessApp.Data", "FitnessApp.Data\FitnessApp.Data.csproj", "{7A5544D2-2089-464B-9B4B-9DFD00BA3CFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessApp.Data", "FitnessApp.Data\FitnessApp.Data.csproj", "{7A5544D2-2089-464B-9B4B-9DFD00BA3CFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessApp.Models", "FitnessApp.Models\FitnessApp.Models.csproj", "{5324A066-4647-4AE6-8184-B3F14F2C69C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessApp.Models", "FitnessApp.Models\FitnessApp.Models.csproj", "{5324A066-4647-4AE6-8184-B3F14F2C69C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessApp.Common", "FitnessApp.Common\FitnessApp.Common.csproj", "{E162AD61-B975-450A-8EE1-0BB5CC8B3BA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessApp.Common", "FitnessApp.Common\FitnessApp.Common.csproj", "{E162AD61-B975-450A-8EE1-0BB5CC8B3BA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessApp.Services", "FitnessApp.Services\FitnessApp.Services.csproj", "{C6A70F9B-DE40-4AA2-BFF7-2ACDDF3B9EB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E162AD61-B975-450A-8EE1-0BB5CC8B3BA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E162AD61-B975-450A-8EE1-0BB5CC8B3BA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E162AD61-B975-450A-8EE1-0BB5CC8B3BA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6A70F9B-DE40-4AA2-BFF7-2ACDDF3B9EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6A70F9B-DE40-4AA2-BFF7-2ACDDF3B9EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6A70F9B-DE40-4AA2-BFF7-2ACDDF3B9EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6A70F9B-DE40-4AA2-BFF7-2ACDDF3B9EB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

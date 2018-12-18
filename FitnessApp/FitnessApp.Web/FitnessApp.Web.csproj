@@ -19,9 +19,4 @@
     <ProjectReference Include="..\FitnessApp.Data\FitnessApp.Data.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
-
 </Project>

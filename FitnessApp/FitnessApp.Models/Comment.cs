@@ -1,6 +1,6 @@
 ﻿namespace FitnessApp.Models
 {
-    using Common;
+    using Common.Constants;
 
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
