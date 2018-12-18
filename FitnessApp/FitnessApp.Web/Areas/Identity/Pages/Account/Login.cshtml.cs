@@ -18,11 +18,13 @@
     {
         private readonly SignInManager<FitnessUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly UserManager<FitnessUser> userManager;
 
-        public LoginModel(SignInManager<FitnessUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<FitnessUser> signInManager, ILogger<LoginModel> logger, UserManager<FitnessUser> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
+            this.userManager = userManager;
         }
 
         [BindProperty]
@@ -76,6 +78,12 @@
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var user = await this.userManager.FindByNameAsync(Input.Username);
+                if (!user.IsActive)
+                {
+                    ModelState.AddModelError(string.Empty, "Your account has been deactivated!");
+                    return Page();
+                }
                 var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {

@@ -11,5 +11,6 @@
         Task<bool> ActivateUserAsync(string id);
 
         Task<bool> DeactivateUserAsync(string id);
+        
     }
 }
