@@ -1,0 +1,45 @@
+﻿@model AllUsersListingViewModel
+@{
+    ViewData["Title"] = "All Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Username
+            </th>
+            <th>
+                Email
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.AllUsers)
+        {
+            var isActive = user.IsActive ? "Deactive" : "Activate";
+        <tr>
+            <th>
+                @user.Id
+            </th>
+            <th>
+                <a asp-controller="Users" asp-action="Profile" asp-route-id="@user.UserName">@user.UserName</a>
+            </th>
+            <th>
+                @user.Email
+            </th>
+            <th>
+                <form method="post" onclick="return confirm('Are you sure you want to do this?')" asp-controller="Admins" asp-action="ChangeUserStatus" asp-route-id="@user.Id" asp-route-isactive="@user.IsActive">
+                    <input type="submit" value="@isActive" class="btn btn-danger" />
+                </form>
+            </th>
+        </tr>
+        }
+    </tbody>
+</table>
