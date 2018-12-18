@@ -69,6 +69,7 @@ namespace FitnessApp.Web.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
+            // TEST
 
             if (ModelState.IsValid)
             {
