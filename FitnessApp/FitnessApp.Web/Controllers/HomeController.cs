@@ -10,6 +10,7 @@ namespace FitnessApp.Web.Controllers
 {
     public class HomeController : Controller
     {
+        //thi returns index
         public IActionResult Index()
         {
             return View();
