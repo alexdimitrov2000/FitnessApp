@@ -40,7 +40,13 @@
                     <input type="submit" value="@isActive" class="btn btn-danger" />
                 </form>
             </th>
+            <th>
+                <a asp-controller="Admins" asp-action="AddToRole" asp-route-id="@user.Id" class="btn btn-primary">Roles</a>
+            </th>
+            <th>
+                <a asp-controller="Admins" asp-action="ChangePassword" class="btn btn-warning" asp-route-id="@user.Id">Change Password</a>
+            </th>
         </tr>
-        }
+        }   
     </tbody>
 </table>

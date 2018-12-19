@@ -18,7 +18,7 @@
 
         [HttpPost]
         [Route(nameof(AddLike))]
-        public async Task<IActionResult> AddLike(LikeInputModel model)
+        public async Task<IActionResult> AddLike([FromBody] LikeInputModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -37,7 +37,7 @@
         
         [HttpPost]
         [Route(nameof(RemoveLike))]
-        public async Task<IActionResult> RemoveLike(LikeInputModel model)
+        public async Task<IActionResult> RemoveLike([FromBody] LikeInputModel model)
         {
             if (!ModelState.IsValid)
             {
