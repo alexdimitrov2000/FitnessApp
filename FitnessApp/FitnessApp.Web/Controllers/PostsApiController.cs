@@ -1,6 +1,6 @@
 ﻿namespace FitnessApp.Web.Controllers
 {
-    using Web.Models.Posts;
+    using Web.Models.Home;
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
     using Services.Contracts;

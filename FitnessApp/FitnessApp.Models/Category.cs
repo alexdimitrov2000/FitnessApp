@@ -17,6 +17,6 @@
         [StringLength(ValidationConstants.MAX_CATEGORY_NAME, MinimumLength = ValidationConstants.MIN_CATEGORY_NAME)]
         public string Name { get; set; }
 
-        public ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

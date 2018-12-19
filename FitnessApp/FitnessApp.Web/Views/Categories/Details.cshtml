@@ -1,0 +1,42 @@
+﻿@model FitnessApp.Web.Models.Categories.CategoryDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Category '@Model.Name' Details</h1>
+<hr />
+
+<h3 class="text-center">Posts in '@Model.Name'</h3>
+<table class="table mx-auto table-hover">
+    <thead>
+        <tr class="row">
+            <th class="col-md-1"><strong>#</strong></th>
+            <th class="col-md-3"><strong>Title</strong></th>
+            <th class="col-md-4"><strong>Content</strong></th>
+            <th class="col-md-2"><strong>User</strong></th>
+            <th class="col-md-1"><strong>Likes</strong></th>
+            <th class="col-md-1"><strong>Comments</strong></th>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Posts.Count(); i++)
+        {
+            <tr class="row">
+                @{ var post = Model.Posts[i]; }
+                @{ var rowNumber = i + 1; }
+                <td class="col-md-1"><strong>@rowNumber</strong></td>
+                <td class="col-md-3">@post.Title</td>
+                <td class="col-md-4">@post.Content</td>
+                <td class="col-md-2">@post.User.Name</td>
+                <td class="col-md-1">@post.Likes</td>
+                <td class="col-md-1">@post.Comments.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

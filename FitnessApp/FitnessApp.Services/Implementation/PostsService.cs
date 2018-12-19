@@ -8,6 +8,7 @@
 
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public class PostsService : IPostsService
     {
@@ -18,9 +19,20 @@
             this.context = context;
         }
 
+        public async Task<Post> GetByIdAsync(int id)
+        {
+            if (id <= 0)
+                return null;
+
+            var post = await this.context.Posts
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            return post;
+        }
+
         public async Task<bool> AddLikeAsync(string username, int postId)
         {
-            var user = await this.context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+            var user = await this.context.Users.FirstOrDefaultAsync(u => u.Name == username);
 
             if(user == null)
             {
@@ -61,7 +73,7 @@
             if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(content) || categoryId <= 0 || string.IsNullOrEmpty(username) || image == null)
                 return false;
 
-            var userId = await this.context.Users.Where(u => u.UserName == username).Select(u => u.Id).FirstOrDefaultAsync();
+            var userId = await this.context.Users.Where(u => u.Name == username).Select(u => u.Id).FirstOrDefaultAsync();
             var category = await this.context.Categories.FirstOrDefaultAsync(c => c.Id == categoryId);
 
             if (userId == null || category == null)
@@ -84,7 +96,7 @@
 
         public async Task<bool> RemoveLikeAsync(string username, int postId)
         {
-            var user = await this.context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+            var user = await this.context.Users.FirstOrDefaultAsync(u => u.Name == username);
 
             if (user == null)
             {
@@ -114,7 +126,7 @@
 
         public async Task<bool> IsLikedAsync(string username, int postId)
         {
-            var user = await this.context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+            var user = await this.context.Users.FirstOrDefaultAsync(u => u.Name == username);
 
             if(user == null)
             {
@@ -129,6 +141,11 @@
             }
 
             return await this.context.Likes.AnyAsync(l => l.UserId == user.Id && l.PostId == postId);
+        }
+
+        public async Task<List<Post>> GetAllAsync()
+        {
+            return await this.context.Posts.ToListAsync();
         }
     }
 }

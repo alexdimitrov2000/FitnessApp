@@ -35,7 +35,10 @@
                         @if (this.User.IsInRole(RolesConstants.ADMINISTRATOR_ROLE))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Create">Add post</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Create">Add Category</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Create">Add Post</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Admins" asp-action="AllUsers">All Users</a>

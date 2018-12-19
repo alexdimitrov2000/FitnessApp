@@ -41,7 +41,7 @@
                     {
                         adminUser = new FitnessUser
                         {
-                            UserName = "admin",
+                            Name = "admin",
                             Email = "admin@admin.com"
                         };
 

@@ -1,0 +1,27 @@
+﻿@model FitnessApp.Web.Models.Posts.PostDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Post Details</h1>
+<hr />
+
+<div class="container-fluid">
+    <div class="row d-flex justify-content-between">
+        <div class="col-md-5">
+            <p>Title: @Model.Title</p>
+            <p>Content: @Model.Content</p>
+            <p>Category: <a asp-controller="Categories" asp-action="Details" asp-route-name="@Model.CategoryName">@Model.CategoryName</a></p>
+            <p>Image By: @Model.UserName</p>
+        </div>
+        <div class="col-md-5">
+            <img src="@Model.ImageUrl" />
+        </div>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

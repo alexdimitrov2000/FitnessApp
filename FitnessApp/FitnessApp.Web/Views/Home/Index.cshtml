@@ -1,8 +1,27 @@
-﻿@{
+﻿@model FitnessApp.Web.Models.Home.PostCollectionViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome, FITNESS.</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <hr />
+
+    <h3 class="text-center">Latest Posts</h3>
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-between">
+            @foreach(var post in Model.Posts)
+            {
+                <div class="col-md-4" style="color: grey; border: solid; border-color: black">
+                    <a asp-controller="Posts" asp-action="Details" asp-route-id="@post.Id">
+                        <h5 class="text-center mt-3">@post.Title</h5>
+                    </a>
+                    <hr class="hr-1 bg-white" />
+                    <img src="@post.ImageUrl" style="width: 300px; margin-bottom: 20px" />
+                </div>
+            }
+        </div>
+    </div>
 </div>

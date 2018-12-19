@@ -1,6 +1,9 @@
-﻿@model FitnessApp.Web.Models.Posts.PostCreateInputModel
+﻿@model FitnessApp.Web.Models.Home.PostCreateInputModel
 
+@inject ICategoriesService categoriesService;
 @{
+    var categories = await this.categoriesService.GetAllAsync();
+
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -22,17 +25,17 @@
                 <input asp-for="Content" class="form-control" />
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
+            <div class="form-group">
                 <label asp-for="CategoryId" class="control-label">Category</label>
                 <select class="dropdown form-control" asp-for="CategoryId">
-                    <option disabled selected="selected">Select a Team</option>
+                    <option disabled selected="selected">Select a Category</option>
                     @foreach (var category in categories)
                     {
-                        <option value="@category.Id" data-content="@category.Name"></option>
+                        <option value="@category.Id">@category.Name</option>
                     }
                 </select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="form-group">
                 <label asp-for="Image" class="control-label">Image: </label>
                 <input asp-for="Image" />

@@ -63,6 +63,11 @@
             return image;
         }
 
+        public string BuildPostPictureUrl(Image image)
+        {
+            return this.cloudinary.Api.UrlImgUp.Version(image.ImageVersion).BuildUrl(image.ImagePublicId);
+        }
+
         private bool IsImageType(IFormFile image)
         {
             if (image.ContentType.Contains("image/jpg") || image.ContentType.Contains("image/jpeg") || image.ContentType.Contains("image/png"))

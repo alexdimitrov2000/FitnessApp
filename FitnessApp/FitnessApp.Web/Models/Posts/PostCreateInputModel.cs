@@ -1,4 +1,4 @@
-﻿namespace FitnessApp.Web.Models.Posts
+﻿namespace FitnessApp.Web.Models.Home
 {
     using FitnessApp.Common.Constants;
     using Microsoft.AspNetCore.Http;

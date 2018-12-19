@@ -1,6 +1,6 @@
 ﻿namespace FitnessApp.Web.Controllers
 {
-    using Models.Posts;
+    using Models.Home;
     using Common.Constants;
     using Services.Contracts;
 
@@ -9,6 +9,7 @@
     using System.Threading.Tasks;
     using FitnessApp.Models;
     using Microsoft.AspNetCore.Identity;
+    using FitnessApp.Web.Models.Posts;
 
     [Authorize(Roles = RolesConstants.ADMINISTRATOR_ROLE)]
     public class PostsController : Controller
@@ -33,19 +34,37 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PostCreateInputModel model)
         {
-            // TODO: Not ready, Finalize!
             if (!ModelState.IsValid)
             {
                 return this.View(model);
             }
 
             var imageFile = model.Image;
+            var postTitle = model.Title;
             var image = await this.cloudinaryService.UploadImageAsync(typeof(Post), imageFile);
 
-            await this.postsService.CreateAsync(model.Title, model.Content, image, model.CategoryId, this.userManager.GetUserName(this.User));
+            await this.postsService.CreateAsync(postTitle, model.Content, image, model.CategoryId, this.userManager.GetUserName(this.User));
 
-            //return this.RedirectToAction("Details", "Posts", new { id = post.Id });
-            return this.View();
+            return this.RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var post = await this.postsService.GetByIdAsync(id);
+
+            if (post == null)
+                return this.NotFound();
+
+            var postViewModel = new PostDetailsViewModel
+            {
+                CategoryName = post.Category.Name,
+                Content = post.Content,
+                UserName = post.User.Name,
+                Title = post.Title,
+                ImageUrl = this.cloudinaryService.BuildPostPictureUrl(post.Image)
+            };
+
+            return this.View(postViewModel);
         }
     }
 }

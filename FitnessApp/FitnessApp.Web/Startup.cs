@@ -34,8 +34,9 @@
             });
 
             services.AddDbContext<FitnessDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                    .UseLazyLoadingProxies());
+
             services.AddIdentity<FitnessUser, IdentityRole>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<FitnessDbContext>();

@@ -13,9 +13,9 @@
         public string Content { get; set; }
 
         public int CommentId { get; set; }
-        public Comment Comment { get; set; }
+        public virtual Comment Comment { get; set; }
 
         public string UserId { get; set; }
-        public FitnessUser User { get; set; }
+        public virtual FitnessUser User { get; set; }
     }
 }

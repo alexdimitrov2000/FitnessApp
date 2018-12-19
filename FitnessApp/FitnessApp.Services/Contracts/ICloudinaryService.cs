@@ -10,5 +10,7 @@
     public interface ICloudinaryService
     {
         Task<Image> UploadImageAsync(Type entityType, IFormFile image);
+
+        string BuildPostPictureUrl(Image image);
     }
 }

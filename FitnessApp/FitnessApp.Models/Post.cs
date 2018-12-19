@@ -22,16 +22,16 @@
         [MinLength(ValidationConstants.MIN_POST_CONTENT)]
         public string Content { get; set; }
 
-        public Image Image { get; set; }
+        public virtual Image Image { get; set; }
 
         public string UserId { get; set; }
-        public FitnessUser User { get; set; }
+        public virtual FitnessUser User { get; set; }
 
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
-        public ICollection<Like> Likes { get; set; }
+        public virtual ICollection<Like> Likes { get; set; }
     }
 }

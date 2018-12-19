@@ -1,7 +1,7 @@
 ﻿namespace FitnessApp.Services.Contracts
 {
     using FitnessApp.Models;
-
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface IPostsService
@@ -13,5 +13,9 @@
         Task<bool> RemoveLikeAsync(string username, int postId);
 
         Task<bool> IsLikedAsync(string username, int postId);
+
+        Task<Post> GetByIdAsync(int id);
+
+        Task<List<Post>> GetAllAsync();
     }
 }

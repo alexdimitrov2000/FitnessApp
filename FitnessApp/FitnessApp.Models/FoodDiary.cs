@@ -15,8 +15,8 @@
         public DateTime Date { get; set; }
 
         public string UserId { get; set; }
-        public FitnessUser User { get; set; }
+        public virtual FitnessUser User { get; set; }
 
-        public ICollection<Food> Meals { get; set; }
+        public virtual ICollection<Food> Meals { get; set; }
     }
 }

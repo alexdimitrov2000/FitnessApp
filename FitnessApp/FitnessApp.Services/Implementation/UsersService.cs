@@ -55,7 +55,7 @@
             var users = await this.db.Users.Select(u => new UsersListingServiceModel
             {
                 Id = u.Id,
-                UserName = u.UserName,
+                UserName = u.Name,
                 Email = u.Email,
                 IsActive = u.IsActive
 

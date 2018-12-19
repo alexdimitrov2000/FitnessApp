@@ -25,6 +25,6 @@
 
         public decimal Fats { get; set; }
 
-        public ICollection<UserFood> Users { get; set; }
+        public virtual ICollection<UserFood> Users { get; set; }
     }
 }

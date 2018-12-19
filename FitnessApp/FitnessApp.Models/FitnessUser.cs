@@ -33,18 +33,18 @@
 
         public bool IsActive { get; set; } = true;
 
-        public Image ProfilePicture { get; set; }
+        public virtual Image ProfilePicture { get; set; }
 
-        public ICollection<Like> Likes { get; set; }
+        public virtual ICollection<Like> Likes { get; set; }
 
-        public ICollection<UserFood> MyFoods { get; set; }
+        public virtual ICollection<UserFood> MyFoods { get; set; }
 
-        public ICollection<FoodDiary> FoodDiaries { get; set; }
+        public virtual ICollection<FoodDiary> FoodDiaries { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
-        public ICollection<Reply> Replies { get; set; }
+        public virtual ICollection<Reply> Replies { get; set; }
 
-        public ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

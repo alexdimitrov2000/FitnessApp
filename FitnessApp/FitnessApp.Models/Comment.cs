@@ -19,11 +19,11 @@
         public string Content { get; set; }
 
         public int PostId { get; set; }
-        public Post Post { get; set; }
+        public virtual Post Post { get; set; }
 
         public string UserId { get; set; }
-        public FitnessUser User { get; set; }
+        public virtual FitnessUser User { get; set; }
 
-        public ICollection<Reply> Replies { get; set; }
+        public virtual ICollection<Reply> Replies { get; set; }
     }
 }
