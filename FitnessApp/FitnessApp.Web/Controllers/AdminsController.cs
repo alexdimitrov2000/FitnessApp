@@ -104,7 +104,7 @@
 
             await this.userManager.AddToRoleAsync(user, role);
 
-            TempData["Success"] = $"User {user.Name} successfully added to role {role}";
+            TempData["Success"] = $"User {user.UserName} successfully added to role {role}";
 
             return RedirectToAction(nameof(AllUsers));
         }

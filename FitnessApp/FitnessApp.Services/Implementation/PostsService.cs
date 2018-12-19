@@ -73,7 +73,7 @@
             if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(content) || categoryId <= 0 || string.IsNullOrEmpty(username) || image == null)
                 return false;
 
-            var userId = await this.context.Users.Where(u => u.Name == username).Select(u => u.Id).FirstOrDefaultAsync();
+            var userId = await this.context.Users.Where(u => u.UserName == username).Select(u => u.Id).FirstOrDefaultAsync();
             var category = await this.context.Categories.FirstOrDefaultAsync(c => c.Id == categoryId);
 
             if (userId == null || category == null)
@@ -96,7 +96,7 @@
 
         public async Task<bool> RemoveLikeAsync(string username, int postId)
         {
-            var user = await this.context.Users.FirstOrDefaultAsync(u => u.Name == username);
+            var user = await this.context.Users.FirstOrDefaultAsync(u => u.UserName == username);
 
             if (user == null)
             {
@@ -126,7 +126,7 @@
 
         public async Task<bool> IsLikedAsync(string username, int postId)
         {
-            var user = await this.context.Users.FirstOrDefaultAsync(u => u.Name == username);
+            var user = await this.context.Users.FirstOrDefaultAsync(u => u.UserName == username);
 
             if(user == null)
             {

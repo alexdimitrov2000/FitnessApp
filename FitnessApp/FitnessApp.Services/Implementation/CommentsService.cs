@@ -22,7 +22,7 @@
                 return false;
             }
 
-            var user = await this.db.Users.FirstOrDefaultAsync(u => u.Name == username);
+            var user = await this.db.Users.FirstOrDefaultAsync(u => u.UserName == username);
 
             if(user == null)
             {
@@ -60,7 +60,7 @@
                 return false;
             }
 
-            var user = await this.db.Users.FirstOrDefaultAsync(u => u.Name == username);
+            var user = await this.db.Users.FirstOrDefaultAsync(u => u.UserName == username);
 
             if(user == null)
             {
