@@ -18,6 +18,44 @@
             this.context = context;
         }
 
+        public async Task<bool> AddLikeAsync(string username, int postId)
+        {
+            var user = await this.context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+
+            if(user == null)
+            {
+                return false;
+            }
+
+            var post = await this.context.Posts.FindAsync(postId);
+
+            if(post == null)
+            {
+                return false;
+            }
+
+            var postLike = await this.context.Likes.FirstOrDefaultAsync(l => l.UserId == user.Id && l.PostId == postId);
+
+            if(postLike != null)
+            {
+                return false;
+            }
+
+            postLike = new Like
+            {
+                User = user,
+                UserId = user.Id,
+                PostId = post.Id,
+                Post = post
+            };
+
+            await this.context.Likes.AddAsync(postLike);
+            await this.context.SaveChangesAsync();
+
+            return true;
+
+        }
+
         public async Task<bool> CreateAsync(string title, string content, Image image, int categoryId, string username)
         {
             if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(content) || categoryId <= 0 || string.IsNullOrEmpty(username) || image == null)
@@ -42,6 +80,55 @@
             await this.context.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<bool> RemoveLikeAsync(string username, int postId)
+        {
+            var user = await this.context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            var post = await this.context.Posts.FindAsync(postId);
+
+            if (post == null)
+            {
+                return false;
+            }
+
+            var postLike = await this.context.Likes.FirstOrDefaultAsync(l => l.UserId == user.Id && l.PostId == postId);
+
+            if(postLike == null)
+            {
+                return false;
+            }
+
+            post.Likes.Remove(postLike);
+
+            await this.context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> IsLikedAsync(string username, int postId)
+        {
+            var user = await this.context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+
+            if(user == null)
+            {
+                return false;
+            }
+
+            var post = await this.context.Posts.FindAsync(postId);
+
+            if(post == null)
+            {
+                return false;
+            }
+
+            return await this.context.Likes.AnyAsync(l => l.UserId == user.Id && l.PostId == postId);
         }
     }
 }
