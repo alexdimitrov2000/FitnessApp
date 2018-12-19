@@ -1,7 +1,7 @@
 ﻿function like(username, id) {
     //Possible problem if there is another likebtn with the same id
     let likeButton = $(`#likeBtn`);
-    let baseUrl = "http://localhost:57008/api/posts";
+    let baseUrl = "http://localhost:5000/api/posts";
     let data = {
         'username': username,
         'postId': id,
