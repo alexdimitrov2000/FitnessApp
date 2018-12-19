@@ -1,8 +1,9 @@
-﻿@model FitnessApp.Web.Models.Posts.PostDetailsViewModel
+﻿@model PostDetailsViewModel
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var isActive = Model.IsLiked ? "active" : string.Empty;
 }
 
 <h1>Post Details</h1>
@@ -18,6 +19,14 @@
         </div>
         <div class="col-md-5">
             <img src="@Model.ImageUrl" />
+        </div>
+    </div>
+    <div class="row d-flex justify-content">
+        <div class="col-md-12">
+            <p id="likes@(+Model.Id)">@Model.Likes.Count()</p> Likes
+        </div>
+        <div class="col-md-6">
+            <button id="likeBtn" class="@isActive btn btn-default" onclick="like(@($"'{User.Identity.Name}'"),@Model.Id)">Like</button>
         </div>
     </div>
 </div>

@@ -48,6 +48,7 @@
             return this.RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
         public async Task<IActionResult> Details(int id)
         {
             var post = await this.postsService.GetByIdAsync(id);
@@ -57,11 +58,14 @@
 
             var postViewModel = new PostDetailsViewModel
             {
+                Id = post.Id,
                 CategoryName = post.Category.Name,
                 Content = post.Content,
                 UserName = post.User.UserName,
                 Title = post.Title,
-                ImageUrl = this.cloudinaryService.BuildPostPictureUrl(post.Image)
+                ImageUrl = this.cloudinaryService.BuildPostPictureUrl(post.Image),
+                Likes = post.Likes,
+                IsLiked = await this.postsService.IsLikedAsync(User.Identity.Name, post.Id)
             };
 
             return this.View(postViewModel);

@@ -32,7 +32,7 @@
 
         public async Task<bool> AddLikeAsync(string username, int postId)
         {
-            var user = await this.context.Users.FirstOrDefaultAsync(u => u.Name == username);
+            var user = await this.context.Users.FirstOrDefaultAsync(u => u.UserName == username);
 
             if(user == null)
             {

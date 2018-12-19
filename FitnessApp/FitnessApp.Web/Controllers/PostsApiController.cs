@@ -4,7 +4,6 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
     using Services.Contracts;
-    using System;
 
     [Route("api/posts")]
     public class PostsApiController : Controller
