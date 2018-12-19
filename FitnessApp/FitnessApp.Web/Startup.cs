@@ -38,6 +38,7 @@
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<FitnessUser, IdentityRole>()
                 .AddRoles<IdentityRole>()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<FitnessDbContext>();
 
             services.AddDomainServices();

@@ -17,7 +17,7 @@
 
         [HttpPost]
         [Route(nameof(AddComment))]
-        public async Task<IActionResult> AddComment(CommentInputModel model)
+        public async Task<IActionResult> AddComment([FromBody] CommentInputModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -36,7 +36,7 @@
 
         [HttpPost]
         [Route(nameof(RemoveComment))]
-        public async Task<IActionResult> RemoveComment(CommentInputModel model)
+        public async Task<IActionResult> RemoveComment([FromBody] CommentInputModel model)
         {
             if (!ModelState.IsValid)
             {
