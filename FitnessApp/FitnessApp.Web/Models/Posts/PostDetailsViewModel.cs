@@ -19,6 +19,10 @@
 
         public bool IsLiked { get; set; }
 
+        public string CurrentUserProfilePicture { get; set; }
+
         public IEnumerable<Like> Likes { get; set; } = new List<Like>();
+        
+        public IEnumerable<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

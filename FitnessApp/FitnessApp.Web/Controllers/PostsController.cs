@@ -52,6 +52,8 @@
         public async Task<IActionResult> Details(int id)
         {
             var post = await this.postsService.GetByIdAsync(id);
+            var currentUsername = User.Identity.Name;
+            var currentUser = await this.userManager.FindByNameAsync(currentUsername);
 
             if (post == null)
                 return this.NotFound();
@@ -65,7 +67,9 @@
                 Title = post.Title,
                 ImageUrl = this.cloudinaryService.BuildPostPictureUrl(post.Image),
                 Likes = post.Likes,
-                IsLiked = await this.postsService.IsLikedAsync(User.Identity.Name, post.Id)
+                Comments = post.Comments,
+                //CurrentUserProfilePicture = this.cloudinaryService.BuildPostPictureUrl(currentUser.ProfilePicture),
+                IsLiked = await this.postsService.IsLikedAsync(currentUsername, post.Id)
             };
 
             return this.View(postViewModel);

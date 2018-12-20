@@ -29,6 +29,23 @@
             <button id="likeBtn" class="@isActive btn btn-default" onclick="like(@($"'{User.Identity.Name}'"),@Model.Id)">Like</button>
         </div>
     </div>
+
+    <div id="comments" class="row">
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="col-md-12">
+                <a asp-controller="Users" asp-action="Profile">@comment.User.UserName</a> - @comment.Content
+            </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <textarea class="form-control" id="commentsTextBox"></textarea>
+        </div>
+        <div class="col-md-6">
+            <button id="commentBtn" class="btn btn-default" onclick="comment(@($"'{User.Identity.Name}'"), @Model.Id)">Comment</button>
+        </div>
+    </div>
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
