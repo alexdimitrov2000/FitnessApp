@@ -26,26 +26,26 @@
         {
             var isActive = user.IsActive ? "Deactive" : "Activate";
         <tr>
-            <th>
+            <td>
                 @user.Id
-            </th>
-            <th>
-                <a asp-controller="Users" asp-action="Profile" asp-route-id="@user.UserName">@user.UserName</a>
-            </th>
-            <th>
+            </td>
+            <td>
+                <a asp-controller="Users" asp-action="Profile" asp-route-username="@user.UserName">@user.UserName</a>
+            </td>
+            <td>
                 @user.Email
-            </th>
-            <th>
+            </td>
+            <td>
                 <form method="post" onclick="return confirm('Are you sure you want to do this?')" asp-controller="Admins" asp-action="ChangeUserStatus" asp-route-id="@user.Id" asp-route-isactive="@user.IsActive">
                     <input type="submit" value="@isActive" class="btn btn-danger" />
                 </form>
-            </th>
-            <th>
+            </td>
+            <td>
                 <a asp-controller="Admins" asp-action="AddToRole" asp-route-id="@user.Id" class="btn btn-primary">Roles</a>
-            </th>
-            <th>
+            </td>
+            <td>
                 <a asp-controller="Admins" asp-action="ChangePassword" class="btn btn-warning" asp-route-id="@user.Id">Change Password</a>
-            </th>
+            </td>
         </tr>
         }   
     </tbody>
