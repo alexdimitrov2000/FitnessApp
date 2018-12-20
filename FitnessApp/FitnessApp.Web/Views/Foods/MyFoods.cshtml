@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FoodsListingModel>
+@{
+    ViewData["Title"] = "My Foods for 100g";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Protein
+            </th>
+            <th>
+                Carbohydrates
+            </th>
+            <th>
+                Fats
+            </th>
+            <th>
+                Calories
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var food in Model)
+        {
+        <tr>
+            <th>
+                @food.Name
+            </th>
+            <th>
+                @food.Protein
+            </th>
+            <th>
+                @food.Carbohydrates
+            </th>
+            <th>
+                @food.Fats
+            </th>
+            <th>
+                @food.Calories
+            </th>
+        </tr>
+        }
+    </tbody>
+</table>
