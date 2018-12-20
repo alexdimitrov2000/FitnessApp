@@ -26,12 +26,11 @@
             var user = await this.userManager.FindByNameAsync(username);
 
             var userPosts = user.Posts.Select(p => new UserPostViewModel
-                            {
-                                Id = p.Id,
-                                PostPictureUrl = this.cloudinaryService.BuildPictureUrl(p.Image),
-                                Title = p.Title
-                            })
-                            .ToList();
+            {
+                Id = p.Id,
+                PostPictureUrl = this.cloudinaryService.BuildPictureUrl(p.Image),
+                Title = p.Title
+            }).ToList();
 
             var userViewModel = new UserProfileViewModel
             {

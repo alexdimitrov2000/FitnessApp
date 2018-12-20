@@ -36,7 +36,7 @@
         {
             var commentUser = comment.User;
             <div class="col-md-12 m-1">
-                <a asp-controller="Users" asp-action="Profile" asp-route-username="@commentUser.UserName"><img src="@this.cloudinaryService.BuildPictureUrl(commentUser.ProfilePicture)" style="width: 45px; height: 30px" /> @commentUser.UserName</a> - @comment.Content
+                <a asp-controller="Users" asp-action="Profile" asp-route-username="@commentUser.UserName"><img src="@this.cloudinaryService.BuildPictureUrl(commentUser.ProfilePicture)" style="width: 45px" /> @commentUser.UserName</a> - @comment.Content
             </div>
         }
     </div>
