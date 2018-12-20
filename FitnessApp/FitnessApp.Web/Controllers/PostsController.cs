@@ -65,10 +65,10 @@
                 Content = post.Content,
                 UserName = post.User.UserName,
                 Title = post.Title,
-                ImageUrl = this.cloudinaryService.BuildPostPictureUrl(post.Image),
+                ImageUrl = this.cloudinaryService.BuildPictureUrl(post.Image),
                 Likes = post.Likes,
                 Comments = post.Comments,
-                //CurrentUserProfilePicture = this.cloudinaryService.BuildPostPictureUrl(currentUser.ProfilePicture),
+                CurrentUserProfilePicture = this.cloudinaryService.BuildPictureUrl(currentUser.ProfilePicture),
                 IsLiked = await this.postsService.IsLikedAsync(currentUsername, post.Id)
             };
 

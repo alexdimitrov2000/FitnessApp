@@ -9,6 +9,7 @@
     using Microsoft.AspNetCore.Http;
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class CloudinaryService : ICloudinaryService
@@ -63,9 +64,22 @@
             return image;
         }
 
-        public string BuildPostPictureUrl(Image image)
+        public string BuildPictureUrl(Image image)
         {
             return this.cloudinary.Api.UrlImgUp.Version(image.ImageVersion).BuildUrl(image.ImagePublicId);
+        }
+
+        public async Task<Image> GetDefaultProfilePictureAsync()
+        {
+            var image = new Image { ImagePublicId = CloudinaryDataConstants.DefaultImagePublicId, ImageVersion = CloudinaryDataConstants.DefaultImageVersion };
+            
+            if (!this.context.Images.Any(i => i.ImagePublicId == image.ImagePublicId && i.ImageVersion == image.ImageVersion))
+            {
+                await this.context.Images.AddAsync(image);
+                await this.context.SaveChangesAsync();
+            }
+
+            return image;
         }
 
         private bool IsImageType(IFormFile image)

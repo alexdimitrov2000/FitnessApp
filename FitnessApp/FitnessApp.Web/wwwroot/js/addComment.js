@@ -22,8 +22,8 @@
             let div = $('<div>').addClass('col-md-12');
             let aTag = $('<a>').attr('href', baseUrl + `users/Profile/${username}`)
             aTag.text(username);
-            //let image = '<img src=\"' + profilePicture + '\" width="48px" height="48px" class="img-rounded"/>';
-            //div.append(image);
+            let image = '<img src=\"' + profilePicture + '\" width="48px" height="48px" class="img-rounded"/>';
+            div.append(image);
             div.append(aTag);
             div.append(' : ' + comment);
             textBox.val(' ');

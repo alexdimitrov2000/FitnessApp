@@ -1,0 +1,19 @@
+﻿@model FitnessApp.Web.Models.Users.UserProfileViewModel
+
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Profile</h1>
+<hr />
+
+<div>
+    <h3>Username: @Model.UserName</h3>
+    <h3>Email: @Model.Email</h3>
+    <h3>Date of Birth: @Model.DateOfBirth</h3>
+    <h3>Weight: @Model.Weight</h3>
+    <h3>Height: @Model.Height</h3>
+    <h3>Body Fat: @Model.BodyFat</h3>
+    <h3>Profile Picture: <img src="@Model.ProfilePictureUrl" style="width: 55px; height: 40px" /></h3>
+</div>

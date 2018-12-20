@@ -25,7 +25,7 @@
             var posts = await this.postsService.GetAllAsync();
 
             var postViewModels = posts.Select(p => new PostIndexViewModel { Id = p.Id, Title = p.Title, Image = p.Image }).ToList();
-            postViewModels.ForEach(p => p.ImageUrl = this.cloudinaryService.BuildPostPictureUrl(p.Image));
+            postViewModels.ForEach(p => p.ImageUrl = this.cloudinaryService.BuildPictureUrl(p.Image));
 
             var postCollectionViewModel = new PostCollectionViewModel
             {

@@ -11,6 +11,8 @@
     {
         Task<Image> UploadImageAsync(Type entityType, IFormFile image);
 
-        string BuildPostPictureUrl(Image image);
+        string BuildPictureUrl(Image image);
+
+        Task<Image> GetDefaultProfilePictureAsync();
     }
 }
