@@ -1,0 +1,57 @@
+﻿@model SearchFoodViewModel
+@{
+    ViewData["Title"] = "Search for food in our database";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <input asp-for="SearchText" class="form-control" />
+    <span asp-validation-for="SearchText" class="text-danger"></span>
+    <input type="submit" value="Search"/>
+</form>
+
+<div class="row">
+    @if (Model.All != null)
+    {
+        <div class="col-md-6">
+            Matched Foods:
+            <ul style="border:1px solid black; width:200px; list-style-type:none">
+                @foreach (var food in Model.All)
+                {
+                    <li class="matched-item">
+                        <div>
+                            <a href="/api/foods/updateInfo/@food.Id" class="update-item">@food.Name</a>
+                        </div>
+                        <p>@food.Calories - 100g serving</p>
+                    </li>
+                    <hr />
+                }
+            </ul>
+        </div>
+    }
+    <div class="col-md-6 container-fluid">
+        Nutrition info
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="col-1">Calories</td>
+                    <td id="calories" class="col-2">0</td>
+                </tr>
+                <tr>
+                    <td class="col-1">Protein</td>
+                    <td id="protein" class="col-2">0g</td>
+                </tr>
+                <tr>
+                    <td class="col-1">Carbohydrates</td>
+                    <td id="carbs" class="col-2">0g</td>
+                </tr>
+                <tr>
+                    <td class="col-1">Fats</td>
+                    <td id="fats" class="col-2">0g</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 ﻿namespace FitnessApp.Services.Implementation
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -18,7 +19,7 @@
             this.db = db;
         }
 
-        public async Task<IEnumerable<FoodsListingModel>> AllFoodForUser(string username)
+        public async Task<IEnumerable<FoodsListingModel>> AllFoodForUserAsync(string username)
         {
             var user = await this.db.Users.FirstOrDefaultAsync(u => u.UserName == username);
 
@@ -31,6 +32,20 @@
             }).ToList();
 
             return foods;
+        }
+
+        public async Task<IEnumerable<FoodsListingModel>> FindFoodsAsync(string searchText)
+        {
+            var food = await this.db.Foods.Where(f => f.Name.Contains(searchText)).Select(f => new FoodsListingModel
+            {
+                Id = f.Id,
+                Name = f.Name,
+                Protein = f.Protein,
+                Carbohydrates = f.Carbohydrates,
+                Fats = f.Fats
+            }).ToListAsync();
+
+            return food;
         }
 
         public async Task<bool> CreateFood(string username, string name, decimal protein, decimal carbohydrates, decimal fats)
@@ -72,6 +87,24 @@
             await this.db.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<FoodsListingModel> GetFoodInfoAsync(int id)
+        {
+            var food = await this.db.Foods.Where(f => f.Id == id).Select(f => new FoodsListingModel
+            {
+                Name = f.Name,
+                Protein = f.Protein,
+                Carbohydrates = f.Carbohydrates,
+                Fats = f.Fats
+            }).FirstOrDefaultAsync();
+
+            if(food == null)
+            {
+                throw new InvalidOperationException($"No food with id: {id} found.");
+            }
+
+            return food;
         }
     }
 }

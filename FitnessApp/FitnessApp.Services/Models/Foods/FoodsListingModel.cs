@@ -2,6 +2,8 @@
 {
     public class FoodsListingModel
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public decimal Protein { get; set; }

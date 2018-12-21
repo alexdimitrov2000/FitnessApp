@@ -5,6 +5,7 @@
     using Models.Foods;
     using FitnessApp.Services.Contracts;
 
+
     public class FoodsController : Controller
     {
         private readonly IFoodsService foods;
@@ -16,7 +17,7 @@
 
         public async Task<IActionResult> MyFoods()
         {
-            var food = await this.foods.AllFoodForUser(User.Identity.Name);
+            var food = await this.foods.AllFoodForUserAsync(User.Identity.Name);
 
             return View(food);
         }
@@ -25,6 +26,14 @@
         {
             return View(new AddFoodInputModel());
         }
+
+        public async Task<IActionResult> All(SearchFoodViewModel model)
+        {
+            var food = await this.foods.FindFoodsAsync(model.SearchText);
+
+            return View(new SearchFoodViewModel { All = food });
+        }
+        
 
         [HttpPost]
         public async Task<IActionResult> AddFood(AddFoodInputModel model)
