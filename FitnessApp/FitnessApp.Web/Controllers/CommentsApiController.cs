@@ -35,22 +35,22 @@
         }
 
         [HttpPost]
-        [Route(nameof(RemoveComment))]
-        public async Task<IActionResult> RemoveComment([FromBody] CommentInputModel model)
+        [Route(nameof(RemoveComment) + "/{commentId}")]
+        public async Task<IActionResult> RemoveComment(int commentId)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            var success = await this.comments.RemoveCommentAsync(model.CommentId,model.Username);
+            var success = await this.comments.RemoveCommentAsync(commentId,User.Identity.Name);
 
             if (!success)
             {
                 return BadRequest();
             }
 
-            return Ok(model);
+            return Ok();
         }
     }
 

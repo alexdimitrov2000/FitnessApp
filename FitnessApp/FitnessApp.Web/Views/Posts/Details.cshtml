@@ -35,9 +35,14 @@
         @foreach (var comment in Model.Comments)
         {
             var commentUser = comment.User;
-            <div class="col-md-12 m-1">
-                <a asp-controller="Users" asp-action="Profile" asp-route-username="@commentUser.UserName"><img src="@this.cloudinaryService.BuildPictureUrl(commentUser.ProfilePicture)" style="width: 45px" /> @commentUser.UserName</a> - @comment.Content
-            </div>
+        <div class="col-md-11 m-1">
+            <a asp-controller="Users" asp-action="Profile" asp-route-username="@commentUser.UserName"><img src="@this.cloudinaryService.BuildPictureUrl(commentUser.ProfilePicture)" style="width: 45px" /> @commentUser.UserName</a> - @comment.Content
+
+            @if (User.Identity.Name == comment.User.UserName)
+            {
+                <a class="deleteComment" href="@comment.Id">Delete</a>
+            }
+        </div>
         }
     </div>
     <div class="row">
