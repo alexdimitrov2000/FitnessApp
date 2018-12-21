@@ -20,10 +20,17 @@
             this.userManager = userManager;
             this.cloudinaryService = cloudinaryService;
         }
-
+        
+        [Route(nameof(Profile) + "/{username}")]
         public async Task<IActionResult> Profile(string username)
         {
             var user = await this.userManager.FindByNameAsync(username);
+
+            //TODO add deactivated view
+            if (!user.IsActive)
+            {
+                return NotFound();
+            }
 
             var userPosts = user.Posts.Select(p => new UserPostViewModel
             {
