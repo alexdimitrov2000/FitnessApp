@@ -1,0 +1,24 @@
+﻿@model AddToDiaryViewModel
+@{
+    ViewData["Title"] = "Add Food To Diary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table>
+    <tbody>
+        @foreach (var food in Model.All)
+        {
+            <tr>
+                <td class="col-1">@food.Name</td>
+                <td class="col-1">
+                    <form method="post" asp-action="AddToDiary" asp-route-date="@Model.Date" asp-route-foodId="@food.Id" asp-route-username="@User.Identity.Name">
+                        Quantity: <input asp-for="Multiplier"/> of 100g
+                        <input type="submit" value="Add Food" class="btn btn-outline-primary"/>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

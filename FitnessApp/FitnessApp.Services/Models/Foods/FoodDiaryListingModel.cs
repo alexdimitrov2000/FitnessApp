@@ -1,15 +1,11 @@
-﻿namespace FitnessApp.Models
+﻿namespace FitnessApp.Services.Models.Foods
 {
+    using FitnessApp.Models;
     using System;
     using System.Collections.Generic;
 
-    public class FoodDiary
+    public class FoodDiaryListingModel
     {
-        public FoodDiary()
-        {
-            this.Meals = new List<Food>();
-        }
-
         public int Id { get; set; }
 
         public decimal EatenCalories { get; set; }

@@ -1,0 +1,46 @@
+﻿@model FoodDiaryViewModel
+@{
+    ViewData["Title"] = $"{Model.User.UserName}'s diary for {Model.Date.ToString("dd-MM-yyyy")}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Meal</th>
+            <th>Calories</th>
+            <th>Protein</th>
+            <th>Carbs</th>
+            <th>Fats</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var meal in Model.Meals)
+        {
+            <tr>
+                <td>@meal.Name</td>
+                <td>@meal.Calories kcal</td>
+                <td>@meal.Protein g</td>
+                <td>@meal.Carbohydrates g</td>
+                <td>@meal.Fats g</td>
+            </tr>
+        }
+        <tr>
+            <td>Totals</td>
+            <td>@Model.Meals.Sum(m => m.Calories) kcal</td>
+            <td>@Model.Meals.Sum(m => m.Protein) g</td>
+            <td>@Model.Meals.Sum(m => m.Carbohydrates) g</td>
+            <td>@Model.Meals.Sum(m => m.Fats) g</td>
+        </tr>
+        <tr>
+            <td>Goal</td>
+        </tr>
+        <tr>
+            <td>Remaining</td>
+        </tr>
+    </tbody>
+</table>
+
+<a asp-controller="Foods" asp-action="AddToDiary" asp-route-date="@Model.Date.ToString("dd-MM-yyyy")" asp-route-username="@Model.User.UserName">Add Food</a>
