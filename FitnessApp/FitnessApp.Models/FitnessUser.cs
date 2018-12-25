@@ -18,6 +18,7 @@
             this.Comments = new List<Comment>();
             this.Replies = new List<Reply>();
             this.Posts = new List<Post>();
+            this.Goals = new List<Goal>();
         }
         
         [StringLength(ValidationConstants.MAX_USER_NAME, MinimumLength = ValidationConstants.MIN_USER_NAME)]
@@ -46,5 +47,7 @@
         public virtual ICollection<Reply> Replies { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }
+
+        public virtual ICollection<Goal> Goals { get; set; }
     }
 }

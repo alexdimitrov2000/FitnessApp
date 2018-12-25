@@ -11,9 +11,7 @@
         }
 
         public int Id { get; set; }
-
-        public decimal EatenCalories { get; set; }
-
+        
         public DateTime Date { get; set; }
 
         public string UserId { get; set; }

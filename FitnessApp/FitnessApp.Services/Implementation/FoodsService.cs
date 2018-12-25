@@ -140,7 +140,6 @@
             var diary = await this.db.FoodDiaries.Select(fd => new FoodDiaryListingModel
             {
                 Date = fd.Date,
-                EatenCalories = fd.EatenCalories,
                 Meals = fd.Meals,
                 User = fd.User,
                 UserId = fd.User.Id

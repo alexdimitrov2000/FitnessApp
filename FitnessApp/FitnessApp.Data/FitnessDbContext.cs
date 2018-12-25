@@ -32,6 +32,8 @@
 
         public DbSet<UserFood> UsersFoods { get; set; }
 
+        public DbSet<Goal> Goals { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -43,6 +45,7 @@
             builder.ApplyConfiguration(new PostConfiguration());
             builder.ApplyConfiguration(new ReplyConfiguration());
             builder.ApplyConfiguration(new UserFoodConfiguration());
+            builder.ApplyConfiguration(new GoalConfiguration());
         }
     }
 }
