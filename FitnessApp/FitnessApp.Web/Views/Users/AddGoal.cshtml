@@ -1,0 +1,54 @@
+﻿@model GoalInputModel
+@{
+    ViewData["Title"] = "Add Goal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Weight"></label>
+        <input asp-for="Weight" class="form-control" />
+        <span asp-validation-for="Weight" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Height"></label>
+        <input asp-for="Height" class="form-control" />
+        <span asp-validation-for="Height" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Age"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender"></label>
+        <br />
+        @foreach (var enumValue in Enum.GetValues(typeof(Gender)).Cast<Gender>())
+        {
+            <input type="radio" name="@nameof(Gender)" value="@((int)enumValue)" />@enumValue
+            <br />
+        }
+    </div>
+    <div class="form-group">
+        <label asp-for="ActivityLevel"></label>
+        <br />
+        @foreach (var enumValue in Enum.GetValues(typeof(ActivityLevel)).Cast<ActivityLevel>())
+        {
+            <input type="radio" name="@nameof(ActivityLevel)" value="@((int)enumValue)" />@: @enumValue.ToDisplayName()
+            <br />
+        }
+    </div>
+    <div class="form-group">
+        <label asp-for="WeightChangeType"></label>
+        <br />
+        @foreach (var enumValue in Enum.GetValues(typeof(WeightChangeType)).Cast<WeightChangeType>())
+        {
+            <input type="radio" name="@nameof(WeightChangeType)" value="@((int)enumValue)" />@: @enumValue.ToDisplayName()
+            <br />
+        }
+    </div>
+    <input type="submit" value="Save goal" class="btn btn-outline-primary" />
+</form>

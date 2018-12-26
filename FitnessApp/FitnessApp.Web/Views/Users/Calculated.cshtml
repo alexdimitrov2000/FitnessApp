@@ -1,0 +1,10 @@
+﻿@model Goal
+@{
+    ViewData["Title"] = "Done";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>Your average daily calories are @Model.Calories </p>
+<p>Your daily macronutrients are: Protein - @Model.Protein, Carbohydrates - @Model.Carbohydrates, Fats - @Model.Fats</p>
+<p>Note that these calories are only a starting point and at a certain time they have to be changed.</p>
+

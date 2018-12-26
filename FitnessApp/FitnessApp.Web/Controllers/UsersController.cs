@@ -12,13 +12,15 @@
 
     public class UsersController : Controller
     {
+        private readonly IUsersService users;
         private readonly UserManager<FitnessUser> userManager;
         private readonly ICloudinaryService cloudinaryService;
 
-        public UsersController(UserManager<FitnessUser> userManager, ICloudinaryService cloudinaryService)
+        public UsersController(UserManager<FitnessUser> userManager, ICloudinaryService cloudinaryService, IUsersService users)
         {
             this.userManager = userManager;
             this.cloudinaryService = cloudinaryService;
+            this.users = users;
         }
         
         [Route(nameof(Profile) + "/{username}")]
@@ -52,6 +54,33 @@
             };
 
             return this.View(userViewModel);
+        }
+
+        public async Task<IActionResult> AddGoal()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddGoal(GoalInputModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var username = User.Identity.Name;
+    
+            var success = await this.users.AddGoal(model.Weight, model.Height, model.Age, model.Gender, model.ActivityLevel, model.WeightChangeType, username);
+
+            if (!success)
+            {
+                return BadRequest();
+            }
+
+            var user = await this.userManager.FindByNameAsync(username);
+            
+            return View("Calculated", user.Goals.FirstOrDefault());
         }
     }
 }

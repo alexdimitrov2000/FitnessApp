@@ -6,6 +6,7 @@
     using FitnessApp.Services.Contracts;
     using System;
     using System.Globalization;
+    using System.Linq;
 
     public class FoodsController : Controller
     {
@@ -68,7 +69,8 @@
                 Date = diary.Date,
                 Meals = diary.Meals,
                 User = diary.User,
-                UserId = diary.User.Id
+                UserId = diary.User.Id,
+                Goal = diary.User.Goals.LastOrDefault()
             };
 
             return View(diaryModel);

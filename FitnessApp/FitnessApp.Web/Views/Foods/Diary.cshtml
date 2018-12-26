@@ -36,9 +36,17 @@
         </tr>
         <tr>
             <td>Goal</td>
+            <td>@Model.Goal.Calories</td>
+            <td>@Model.Goal.Protein</td>
+            <td>@Model.Goal.Carbohydrates</td>
+            <td>@Model.Goal.Fats</td>
         </tr>
         <tr>
             <td>Remaining</td>
+            <td>@(Model.Goal.Calories - Model.Meals.Sum(m => m.Calories)) kcal</td>
+            <td>@(Model.Goal.Protein - Model.Meals.Sum(m => m.Protein)) g</td>
+            <td>@(Model.Goal.Carbohydrates - Model.Meals.Sum(m => m.Carbohydrates)) g</td>
+            <td>@(Model.Goal.Fats - Model.Meals.Sum(m => m.Fats)) g</td>
         </tr>
     </tbody>
 </table>

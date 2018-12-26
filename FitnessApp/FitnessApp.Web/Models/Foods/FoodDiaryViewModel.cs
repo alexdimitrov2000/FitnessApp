@@ -16,6 +16,8 @@
 
         public virtual FitnessUser User { get; set; }
 
+        public virtual Goal Goal { get; set; }
+
         public virtual ICollection<Food> Meals { get; set; }
     }
 }
