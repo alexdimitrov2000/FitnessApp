@@ -19,7 +19,7 @@
             <p>Image By: @Model.UserName</p>
         </div>
         <div class="col-md-5">
-            <img src="@Model.ImageUrl" style="width: 500px" />
+            <img src="@Model.ImageUrl" class="img-fluid" style="width: 500px" />
         </div>
     </div>
     <div class="row d-flex justify-content">
@@ -27,7 +27,7 @@
             <p id="likes@(+Model.Id)">@Model.Likes.Count()</p> Likes
         </div>
         <div class="col-md-6">
-            <button id="likeBtn" class="@isActive btn btn-default" onclick="like(@($"'{User.Identity.Name}'"),@Model.Id)">Like</button>
+            <button id="likeBtn" class="@isActive btn btn-default" onclick="like(@($"'{User.Identity.Name}'"),@Model.Id)"><i class="far fa-thumbs-up"></i> Like</button>
         </div>
     </div>
 
@@ -35,14 +35,19 @@
         @foreach (var comment in Model.Comments)
         {
             var commentUser = comment.User;
-        <div class="col-md-11 m-1">
-            <a asp-controller="Users" asp-action="Profile" asp-route-username="@commentUser.UserName"><img src="@this.cloudinaryService.BuildPictureUrl(commentUser.ProfilePicture)" style="width: 45px" /> @commentUser.UserName</a> - @comment.Content
+            <div class="col-md-11 m-1">
+                <a asp-controller="Users" asp-action="Profile" asp-route-username="@commentUser.UserName"><img src="@this.cloudinaryService.BuildPictureUrl(commentUser.ProfilePicture)" style="width: 45px" /> @commentUser.UserName</a> - @comment.Content
 
-            @if (User.Identity.Name == comment.User.UserName)
-            {
-                <a class="deleteComment" href="@comment.Id">Delete</a>
-            }
-        </div>
+                @if (User.Identity.Name == comment.User.UserName)
+                {
+                    <a href="#" class="dropdown-toggle" id="commentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" id="dropdown-menu-content">
+                        <a class="deleteComment" href="@comment.Id" id="commentOption"><i class="far fa-trash-alt"></i> Delete</a>
+                    </div>
+                }
+            </div>
         }
     </div>
     <div class="row">
@@ -50,7 +55,7 @@
             <textarea class="form-control" id="commentsTextBox"></textarea>
         </div>
         <div class="col-md-6">
-            <button id="commentBtn" class="btn btn-default" onclick="comment(@($"'{User.Identity.Name}'"), @Model.Id, @($"'{Model.CurrentUserProfilePicture}'"))">Comment</button>
+            <button id="commentBtn" class="btn btn-default" onclick="comment(@($"'{User.Identity.Name}'"), @Model.Id, @($"'{Model.CurrentUserProfilePicture}'"))"><i class="far fa-comment"></i> Comment</button>
         </div>
     </div>
 </div>
