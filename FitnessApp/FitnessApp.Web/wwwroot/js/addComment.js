@@ -20,7 +20,7 @@
         data: JSON.stringify(data),
         success: function () {
             let div = $('<div>').addClass('col-md-12 m-1');
-            let aTag = $('<a>').attr('href', baseUrl + `users/Profile/${username}`)
+            let aTag = $('<a>').attr('href', baseUrl + `users/Profile/${username}`);
             aTag.text(username);
             let image = '<img src=\"' + profilePicture + '\" width="45px" class="img-rounded"/>';
             div.append(image);
