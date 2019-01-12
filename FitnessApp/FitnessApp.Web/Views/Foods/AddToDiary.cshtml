@@ -14,7 +14,7 @@
                 <td class="col-1">@food.Name</td>
                 <td class="col-1">
                     <form method="post" asp-action="AddToDiary" asp-route-date="@Model.Date" asp-route-foodId="@food.Id" asp-route-username="@User.Identity.Name">
-                        Quantity: <input asp-for="Multiplier"/> of 100g
+                        Quantity: <input asp-for="Multiplier" type="number"/> of 100g
                         <input type="submit" value="Add Food" class="btn btn-outline-primary"/>
                     </form>
                 </td>
