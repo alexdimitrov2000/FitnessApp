@@ -17,9 +17,12 @@
         private const string RootFolder = "FitnessApp";
 
         private const string PostsImagesFolder = "PostsImages";
+        private const string ProfilePicturesFolder = "UserProfileImages";
+
         private Dictionary<Type, string> EntityFolders = new Dictionary<Type, string>
         {
-            { typeof(Post), PostsImagesFolder }
+            { typeof(Post), PostsImagesFolder },
+            { typeof(FitnessUser), ProfilePicturesFolder },
         };
 
         private readonly Cloudinary cloudinary;

@@ -21,6 +21,19 @@
             this.db = db;
         }
 
+        public async Task<FitnessUser> SetProfilePictureAsync(FitnessUser user, Image picture)
+        {
+            if (picture == null || user == null)
+                return null;
+
+            user.ProfilePicture = picture;
+
+            this.db.Users.Update(user);
+            await this.db.SaveChangesAsync();
+
+            return user;
+        }
+
         public async Task<bool> DeactivateUserAsync(string id)
         {
             var user = await this.db.Users.Include(u => u.Posts).FirstOrDefaultAsync(u => u.Id == id);

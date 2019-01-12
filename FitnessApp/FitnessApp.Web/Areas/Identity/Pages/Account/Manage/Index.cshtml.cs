@@ -1,28 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using FitnessApp.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace FitnessApp.Web.Areas.Identity.Pages.Account.Manage
+﻿namespace FitnessApp.Web.Areas.Identity.Pages.Account.Manage
 {
+    using FitnessApp.Models;
+    using Services.Contracts;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+
+    using System;
+    using System.Threading.Tasks;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class IndexModel : PageModel
     {
         private readonly UserManager<FitnessUser> _userManager;
         private readonly SignInManager<FitnessUser> _signInManager;
+        private readonly ICloudinaryService cloudinaryService;
+        private readonly IUsersService usersService;
 
         public IndexModel(
             UserManager<FitnessUser> userManager,
-            SignInManager<FitnessUser> signInManager)
+            SignInManager<FitnessUser> signInManager,
+            ICloudinaryService cloudinaryService,
+            IUsersService usersService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            this.cloudinaryService = cloudinaryService;
+            this.usersService = usersService;
         }
 
         public string Username { get; set; }
@@ -44,6 +50,9 @@ namespace FitnessApp.Web.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "Profile picture")]
+            public IFormFile ProfilePicture { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -95,6 +104,14 @@ namespace FitnessApp.Web.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            var pictureFile = Input.ProfilePicture;
+            if (pictureFile != null)
+            {
+                var profilePicture = await this.cloudinaryService.UploadImageAsync(typeof(FitnessUser), pictureFile);
+
+                await this.usersService.SetProfilePictureAsync(user, profilePicture);
+            }
+
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
             {
@@ -133,7 +150,7 @@ namespace FitnessApp.Web.Areas.Identity.Pages.Account.Manage
                 pageHandler: null,
                 values: new { userId = userId, code = code },
                 protocol: Request.Scheme);
-            
+
             return RedirectToPage();
         }
     }

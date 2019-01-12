@@ -1,9 +1,11 @@
 ﻿namespace FitnessApp.Services.Contracts
 {
-    using FitnessApp.Models.Enums;
     using Models;
-    using System.Collections.Generic;
+    using FitnessApp.Models;
+    using FitnessApp.Models.Enums;
+
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public interface IUsersService
     {
@@ -14,6 +16,7 @@
         Task<bool> DeactivateUserAsync(string id);
 
         Task<bool> AddGoal(decimal weight, decimal height, int age, Gender gender, ActivityLevel activityLevel, WeightChangeType weightChangeType, string username);
-                
+
+        Task<FitnessUser> SetProfilePictureAsync(FitnessUser user, Image picture);                
     }
 }
