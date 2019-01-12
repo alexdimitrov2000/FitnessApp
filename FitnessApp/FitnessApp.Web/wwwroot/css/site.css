@@ -53,6 +53,11 @@ button.accept-policy {
     margin-left: 10px;
 }
 
+.profile-picture {
+    border-radius: 50%;
+    width: 30px;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
