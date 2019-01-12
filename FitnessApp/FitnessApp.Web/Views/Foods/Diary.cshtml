@@ -4,7 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <a asp-controller="Foods" asp-action="Diary" asp-route-username="@Model.User.UserName" asp-route-date="@Model.Date.AddDays(-1).ToString("dd-MM-yyyy")">Yesterday</a>
+    <h1>@ViewData["Title"]</h1>
+    <a asp-controller="Foods" asp-action="Diary" asp-route-username="@Model.User.UserName" asp-route-date="@Model.Date.AddDays(1).ToString("dd-MM-yyyy")">Tomorrow</a>
+</div>
+
 
 <table class="table">
     <thead>

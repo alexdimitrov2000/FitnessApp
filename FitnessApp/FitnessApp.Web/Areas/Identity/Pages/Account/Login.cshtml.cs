@@ -79,11 +79,16 @@
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var user = await this.userManager.FindByNameAsync(Input.Username);
-                if (!user.IsActive)
+
+                if(user != null)
                 {
-                    ModelState.AddModelError(string.Empty, "Your account has been deactivated!");
-                    return Page();
+                    if (!user.IsActive)
+                    {
+                        ModelState.AddModelError(string.Empty, "Your account has been deactivated!");
+                        return Page();
+                    }
                 }
+                
                 var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
