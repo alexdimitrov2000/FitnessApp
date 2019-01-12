@@ -7,14 +7,18 @@
     using System;
     using System.Globalization;
     using System.Linq;
+    using FitnessApp.Models.Enums;
+    using FitnessApp.Common.Constants;
 
     public class FoodsController : Controller
     {
         private readonly IFoodsService foods;
+        private readonly IUsersService users;
 
-        public FoodsController(IFoodsService foods)
+        public FoodsController(IFoodsService foods, IUsersService users)
         {
             this.foods = foods;
+            this.users = users;
         }
 
         public async Task<IActionResult> MyFoods()
@@ -61,7 +65,7 @@
             }
 
             var diary = await this.foods.FindDiaryAsync(dateTime, username);
-
+            
             var diaryModel = new FoodDiaryViewModel
             {
                 Id = diary.Id,

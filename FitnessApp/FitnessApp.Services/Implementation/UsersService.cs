@@ -74,8 +74,8 @@
 
         public async Task<bool> AddGoal(decimal weight, decimal height, int age, Gender gender, ActivityLevel activityLevel, WeightChangeType weightChangeType, string username)
         {
-            //FIX CALORIES
-            if(weight <= 0 || height <= 0 || age <= 0)
+
+            if(weight <= GlobalConstants.DEFAULT_GOAL_WEIGHT || height <= GlobalConstants.DEFAULT_GOAL_HEIGHT || age <= GlobalConstants.DEFAULT_GOAL_AGE)
             {
                 return false;
             }

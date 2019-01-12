@@ -14,6 +14,6 @@
         public int FoodId { get; set; }
 
         [Required]
-        public int Multiplier { get; set; }
+        public decimal Multiplier { get; set; }
     }
 }

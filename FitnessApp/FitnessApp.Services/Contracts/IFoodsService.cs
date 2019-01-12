@@ -14,7 +14,7 @@
 
         Task<bool> CreateDiaryAsync(DateTime date, string username);
 
-        Task<bool> AddToDiaryAsync(DateTime date, int foodId, int multiplier, string username);
+        Task<bool> AddToDiaryAsync(DateTime date, int foodId, decimal multiplier, string username);
 
         Task<FoodDiaryListingModel> FindDiaryAsync(DateTime date, string usernmae);
 

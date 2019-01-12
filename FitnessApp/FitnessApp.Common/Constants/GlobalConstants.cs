@@ -21,5 +21,9 @@
         public const int BULKING_CALORIES = 500;
         public const int CUTTING_CALORIES = -500;
         public const int MAINTAIN_CALORIES = 0;
+
+        public const decimal DEFAULT_GOAL_WEIGHT = 0;
+        public const decimal DEFAULT_GOAL_HEIGHT = 0;
+        public const int DEFAULT_GOAL_AGE = 0;
     }
 }

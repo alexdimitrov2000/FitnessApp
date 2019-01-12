@@ -153,7 +153,7 @@
             return diary;
         }
 
-        public async Task<bool> AddToDiaryAsync(DateTime date, int foodId, int multiplier, string username)
+        public async Task<bool> AddToDiaryAsync(DateTime date, int foodId, decimal multiplier, string username)
         {
             if (multiplier <= 0)
             {
@@ -182,7 +182,7 @@
             return true;
         }
 
-        private async Task MultiplyFood(Food food, int multiplier)
+        private async Task MultiplyFood(Food food, decimal multiplier)
         {
             food.Protein *= multiplier;
             food.Carbohydrates *= multiplier;
