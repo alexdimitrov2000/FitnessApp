@@ -66,12 +66,14 @@
             {
                 return false;
             }
-
-            if(comment.UserId != user.Id)
+            if(user.UserName != "admin")
             {
-                return false;
+                if (comment.UserId != user.Id)
+                {
+                    return false;
+                }
             }
-
+            
             this.db.Comments.Remove(comment);
             await this.db.SaveChangesAsync();
 

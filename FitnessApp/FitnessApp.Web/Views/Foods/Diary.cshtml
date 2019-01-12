@@ -10,6 +10,13 @@
     <a asp-controller="Foods" asp-action="Diary" asp-route-username="@Model.User.UserName" asp-route-date="@Model.Date.AddDays(1).ToString("dd-MM-yyyy")">Tomorrow</a>
 </div>
 
+@{ 
+    var goalCalories = Model.Goal == null ? 0 : Model.Goal.Calories;
+    var goalProtein = Model.Goal == null ? 0 : Model.Goal.Protein;
+    var goalCarbs = Model.Goal == null ? 0 : Model.Goal.Carbohydrates;
+    var goalFats = Model.Goal == null ? 0 : Model.Goal.Fats;
+}
+
 
 <table class="table">
     <thead>
@@ -41,17 +48,17 @@
         </tr>
         <tr>
             <td>Goal</td>
-            <td>@Model.Goal.Calories kcal</td>
-            <td>@Model.Goal.Protein g</td>
-            <td>@Model.Goal.Carbohydrates g</td>
-            <td>@Model.Goal.Fats g</td>
+            <td>@goalCalories kcal</td>
+            <td>@goalProtein g</td>
+            <td>@goalCarbs g</td>
+            <td>@goalFats g</td>
         </tr>
         <tr>
             <td>Remaining</td>
-            <td>@(Model.Goal.Calories - Model.Meals.Sum(m => m.Calories)) kcal</td>
-            <td>@(Model.Goal.Protein - Model.Meals.Sum(m => m.Protein)) g</td>
-            <td>@(Model.Goal.Carbohydrates - Model.Meals.Sum(m => m.Carbohydrates)) g</td>
-            <td>@(Model.Goal.Fats - Model.Meals.Sum(m => m.Fats)) g</td>
+            <td>@(goalCalories - Model.Meals.Sum(m => m.Calories)) kcal</td>
+            <td>@(goalProtein - Model.Meals.Sum(m => m.Protein)) g</td>
+            <td>@(goalCarbs - Model.Meals.Sum(m => m.Carbohydrates)) g</td>
+            <td>@(goalFats - Model.Meals.Sum(m => m.Fats)) g</td>
         </tr>
     </tbody>
 </table>
