@@ -15,7 +15,7 @@
             'Content-Type': 'application/json'
         },
         success: function () {
-            clicked.parent().remove();
+            clicked.parent().parent().remove();
         },
         error: function (msg) {
             console.dir(msg);
