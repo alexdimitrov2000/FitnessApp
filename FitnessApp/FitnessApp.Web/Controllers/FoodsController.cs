@@ -39,7 +39,7 @@
         public async Task<IActionResult> Diary(string date, string username)
         {
             DateTime dateTime;
-
+            
             if (date == null)
             {
                 dateTime = DateTime.UtcNow.Date;
