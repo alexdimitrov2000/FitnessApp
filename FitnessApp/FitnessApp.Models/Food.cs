@@ -9,6 +9,7 @@
         public Food()
         {
             this.Users = new List<UserFood>();
+            this.DiaryFood = new List<DiaryFood>();
         }
 
         public int Id { get; set; }
@@ -26,5 +27,7 @@
         public decimal Fats { get; set; }
 
         public virtual ICollection<UserFood> Users { get; set; }
+
+        public virtual ICollection<DiaryFood> DiaryFood { get; set; }
     }
 }

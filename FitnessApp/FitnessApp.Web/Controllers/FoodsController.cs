@@ -43,6 +43,11 @@
         public async Task<IActionResult> Diary(string date, string username)
         {
             DateTime dateTime;
+
+            if(username == null)
+            {
+                username = User.Identity.Name;
+            }
             
             if (date == null)
             {

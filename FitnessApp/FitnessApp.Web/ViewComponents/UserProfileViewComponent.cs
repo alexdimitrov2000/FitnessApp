@@ -23,8 +23,8 @@
 
         public async Task<IViewComponentResult> InvokeAsync(ClaimsPrincipal principalUser)
         {
-            var user = await this.userManager.GetUserAsync(principalUser);
-
+            var user = await this.userManager.FindByNameAsync(principalUser.Identity.Name);
+            
             var profilePictureUrl = this.cloudinaryService.BuildPictureUrl(user.ProfilePicture);
 
             return this.View((object)profilePictureUrl);

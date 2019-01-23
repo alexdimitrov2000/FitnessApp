@@ -32,19 +32,19 @@
         @foreach (var meal in Model.Meals)
         {
             <tr>
-                <td>@meal.Name</td>
-                <td>@meal.Calories kcal</td>
-                <td>@meal.Protein g</td>
-                <td>@meal.Carbohydrates g</td>
-                <td>@meal.Fats g</td>
+                <td>@meal.Food.Name</td>
+                <td>@(meal.Food.Calories * meal.Multiplier) kcal</td>
+                <td>@(meal.Food.Protein * meal.Multiplier) g</td>
+                <td>@(meal.Food.Carbohydrates * meal.Multiplier) g</td>
+                <td>@(meal.Food.Fats * meal.Multiplier) g</td>
             </tr>
         }
         <tr>
             <td>Totals</td>
-            <td>@Model.Meals.Sum(m => m.Calories) kcal</td>
-            <td>@Model.Meals.Sum(m => m.Protein) g</td>
-            <td>@Model.Meals.Sum(m => m.Carbohydrates) g</td>
-            <td>@Model.Meals.Sum(m => m.Fats) g</td>
+            <td>@Model.Meals.Sum(m => m.Food.Calories * m.Multiplier) kcal</td>
+            <td>@Model.Meals.Sum(m => m.Food.Protein * m.Multiplier) g</td>
+            <td>@Model.Meals.Sum(m => m.Food.Carbohydrates * m.Multiplier) g</td>
+            <td>@Model.Meals.Sum(m => m.Food.Fats * m.Multiplier) g</td>
         </tr>
         <tr>
             <td>Goal</td>
@@ -55,10 +55,10 @@
         </tr>
         <tr>
             <td>Remaining</td>
-            <td>@(goalCalories - Model.Meals.Sum(m => m.Calories)) kcal</td>
-            <td>@(goalProtein - Model.Meals.Sum(m => m.Protein)) g</td>
-            <td>@(goalCarbs - Model.Meals.Sum(m => m.Carbohydrates)) g</td>
-            <td>@(goalFats - Model.Meals.Sum(m => m.Fats)) g</td>
+            <td>@(goalCalories - Model.Meals.Sum(m => m.Food.Calories * m.Multiplier)) kcal</td>
+            <td>@(goalProtein - Model.Meals.Sum(m => m.Food.Protein * m.Multiplier)) g</td>
+            <td>@(goalCarbs - Model.Meals.Sum(m => m.Food.Carbohydrates * m.Multiplier)) g</td>
+            <td>@(goalFats - Model.Meals.Sum(m => m.Food.Fats * m.Multiplier)) g</td>
         </tr>
     </tbody>
 </table>

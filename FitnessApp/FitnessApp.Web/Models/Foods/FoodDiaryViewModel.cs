@@ -18,6 +18,6 @@
 
         public virtual Goal Goal { get; set; }
 
-        public virtual ICollection<Food> Meals { get; set; }
+        public virtual ICollection<DiaryFood> Meals { get; set; }
     }
 }

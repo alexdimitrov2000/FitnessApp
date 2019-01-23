@@ -3,6 +3,7 @@
     using Common.Constants;
     using Data;
     using FitnessApp.Models;
+    using Services.Contracts;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@
 
                 var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
                 var userManager = serviceScope.ServiceProvider.GetService<UserManager<FitnessUser>>();
+                var cloudinaryService = serviceScope.ServiceProvider.GetService<ICloudinaryService>();
 
                 Task.Run(async () =>
                 {
@@ -41,12 +43,12 @@
                     {
                         adminUser = new FitnessUser
                         {
-                            Name = "admin",
-                            Email = "admin@admin.com"
+                            UserName = "admin",
+                            Email = "admin@admin.com",
+                            ProfilePicture = await cloudinaryService.GetDefaultProfilePictureAsync()
                         };
-
-                        await userManager.CreateAsync(adminUser, "admin12");
-                        await userManager.AddToRoleAsync(adminUser, adminName);
+                        var result = await userManager.CreateAsync(adminUser, "admin12");
+                        var seconResult = await userManager.AddToRoleAsync(adminUser, adminName);
                     }
 
                 })

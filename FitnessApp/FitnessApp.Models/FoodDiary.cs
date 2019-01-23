@@ -7,7 +7,7 @@
     {
         public FoodDiary()
         {
-            this.Meals = new List<Food>();
+            this.Meals = new List<DiaryFood>();
         }
 
         public int Id { get; set; }
@@ -18,6 +18,6 @@
 
         public virtual FitnessUser User { get; set; }
 
-        public virtual ICollection<Food> Meals { get; set; }
+        public virtual ICollection<DiaryFood> Meals { get; set; }
     }
 }

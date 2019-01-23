@@ -1,3 +1,6 @@
 ﻿@model string
 
-<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><img src="@Model.ToString()" class="profile-picture" /> @User.Identity.Name!</a>
+@if (this.User.Identity.IsAuthenticated)
+{
+    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><img src="@Model.ToString()" class="profile-picture" /> @User.Identity.Name!</a>
+}

@@ -137,14 +137,19 @@
 
         public async Task<FoodDiaryListingModel> FindDiaryAsync(DateTime date, string username)
         {
-            var diary = await this.db.FoodDiaries.Select(fd => new FoodDiaryListingModel
+            var diary = await this.db.FoodDiaries.Include(f => f.Meals).Select(fd => new FoodDiaryListingModel
             {
+                Id = fd.Id,
                 Date = fd.Date,
                 Meals = fd.Meals,
                 User = fd.User,
                 UserId = fd.User.Id
             }).FirstOrDefaultAsync(fd => fd.Date.CompareTo(date.Date) == 0 && fd.User.UserName == username);
 
+            var diaryFood = await this.db.DiaryFoods.Where(df => df.FoodDiaryId == diary.Id).ToListAsync();
+
+            diary.Meals = diaryFood;
+            
             if(diary == null)
             {
                 throw new InvalidOperationException($"No food diary for date: {date.Date} found!");
@@ -160,33 +165,48 @@
                 return false;
             }
 
-            var food = await this.db.Foods.FindAsync(foodId);
-            await this.MultiplyFood(food, multiplier);
+            var food = await this.db.Foods.FirstOrDefaultAsync(f => f.Id == foodId);
 
             if (food == null)
             {
                 return false;
             }
-
-            var diary = await this.db.FoodDiaries.FirstOrDefaultAsync(fd => fd.Date.Date.CompareTo(date.Date) == 0 && fd.User.UserName == username);
+            
+            var diary = await this.db.FoodDiaries
+                .FirstOrDefaultAsync(fd => fd.Date.Date.CompareTo(date.Date) == 0 && fd.User.UserName == username);
 
             if (diary == null)
             {
-                return false;   
+                return false;
             }
 
-            diary.Meals.Add(food);
+            var diaryfood = await this.db.DiaryFoods
+                .FirstOrDefaultAsync(df => df.FoodId == foodId && df.Multiplier == multiplier && df.FoodDiaryId == diary.Id);
 
+            if(diaryfood == null)
+            {
+                diaryfood = new DiaryFood
+                {
+                    Food = food,
+                    FoodId = foodId,
+                    Multiplier = multiplier,
+                    FoodDiary = diary,
+                    FoodDiaryId = diary.Id
+                };
+
+                await this.db.DiaryFoods.AddAsync(diaryfood);
+            }
+            else
+            {
+                diaryfood.Multiplier += multiplier;
+            }
+
+            diary.Meals.Add(diaryfood);
+                                    
             await this.db.SaveChangesAsync();
-
+            
             return true;
         }
-
-        private async Task MultiplyFood(Food food, decimal multiplier)
-        {
-            food.Protein *= multiplier;
-            food.Carbohydrates *= multiplier;
-            food.Fats *= multiplier;
-        }
+                
     }
 }

@@ -34,6 +34,8 @@
 
         public DbSet<Goal> Goals { get; set; }
 
+        public DbSet<DiaryFood> DiaryFoods { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
