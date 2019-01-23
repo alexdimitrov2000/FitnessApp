@@ -68,6 +68,17 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
+    background-color: #e9ebee;
+    color: #000000;
+}
+
+.fitness-navbar, .fitness-footer {
+    background-color: #0070bf;
+    color: #ffffff;
+}
+
+.fitness-navbar ul li {
+    color: #ffffff;
 }
 
 .footer {
@@ -76,6 +87,6 @@ body {
     width: 100%;
     white-space: nowrap;
     /* Set the fixed height of the footer here */
-    height: 60px;
-    line-height: 60px; /* Vertically center the text there */
+    height: 40px;
+    line-height: 40px; /* Vertically center the text there */
 }
