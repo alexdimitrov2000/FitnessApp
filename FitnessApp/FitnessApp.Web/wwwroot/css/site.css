@@ -36,28 +36,6 @@ button.accept-policy {
     line-height: inherit;
 }
 
-#commentDropdown {
-    margin: 3px;
-    color: grey;
-}
-
-#commentDropdown:hover {
-    color: black;
-}
-
-#commentDropdown::after {
-    display: none;
-}
-
-#commentOption {
-    margin-left: 10px;
-}
-
-.profile-picture {
-    border-radius: 50%;
-    width: 30px;
-}
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -70,15 +48,6 @@ body {
     margin-bottom: 60px;
     background-color: #e9ebee;
     color: #000000;
-}
-
-.fitness-navbar, .fitness-footer {
-    background-color: #0070bf;
-    color: #ffffff;
-}
-
-.fitness-navbar ul li {
-    color: #ffffff;
 }
 
 .footer {

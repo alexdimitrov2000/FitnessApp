@@ -1,0 +1,49 @@
+﻿.nav-link, .navbar-brand {
+    color: #ffffff;
+}
+
+    .nav-link:hover {
+        color: #e9ebee;
+    }
+
+    .navbar-brand:hover{
+        color: #e9ebee;
+    }
+
+#commentDropdown {
+    margin: 3px;
+    color: grey;
+}
+
+    #commentDropdown:hover {
+        color: black;
+    }
+
+    #commentDropdown::after {
+        display: none;
+    }
+
+#commentOption {
+    margin-left: 10px;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    width: 30px;
+    margin-right: 3px;
+}
+
+.fitness-navbar {
+    background-color: #0070bf;
+    color: #ffffff;
+    height: 63px;
+}
+
+    .fitness-navbar ul li {
+        color: #ffffff;
+    }
+
+.fitness-footer {
+    background-color: #0070bf;
+    color: #ffffff;
+}

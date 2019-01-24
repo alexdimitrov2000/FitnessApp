@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FitnessApp.Web</title>
 
-    <link rel="stylesheet" href="~/css/reset-css.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/reset-css.css" />
     <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/custom.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fitness-navbar">
+        <nav class="navbar fitness-navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FitnessApp</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -40,10 +41,10 @@
                                 </li>
                             }
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Foods" asp-action="Diary" asp-route-date="@DateTime.UtcNow.Date.ToString("dd-MM-yyyy")" asp-route-username="@User.Identity.Name"><i class="fas fa-book"></i> Diary</a>
+                                <a class="nav-link" asp-area="" asp-controller="Foods" asp-action="Diary" asp-route-date="@DateTime.UtcNow.Date.ToString("dd-MM-yyyy")" asp-route-username="@User.Identity.Name"><i class="fas fa-book"></i> Diary</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Foods" asp-action="All"><i class="fas fa-utensils"></i> All Foods</a>
+                                <a class="nav-link" asp-area="" asp-controller="Foods" asp-action="All"><i class="fas fa-utensils"></i> All Foods</a>
                             </li>
                         }
                     </ul>
