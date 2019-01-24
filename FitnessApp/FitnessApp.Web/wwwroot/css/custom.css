@@ -1,4 +1,12 @@
-﻿.nav-link, .navbar-brand {
+﻿a:hover {
+    text-decoration: none;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.nav-link, .navbar-brand {
     color: #ffffff;
 }
 
@@ -9,6 +17,11 @@
     .navbar-brand:hover{
         color: #e9ebee;
     }
+
+.container-fluid {
+    margin-left: 218px;
+    margin-right: 218px;
+}
 
 #commentDropdown {
     margin: 3px;
@@ -25,6 +38,29 @@
 
 #commentOption {
     margin-left: 10px;
+}
+
+#loginButton {
+    height: 40px;
+    font-size: 19px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-bottom: 1px;
+}
+
+.form-group a:hover{
+    color: #ffffff;
+}
+
+.content-line {
+    height: 1px;
+    background-color: #e9ebee;
+}
+
+.btn-fitness {
+    background-color: #0070bf;
+    color: #ffffff;
+    margin-top: 17px;
 }
 
 .profile-picture {
@@ -46,4 +82,30 @@
 .fitness-footer {
     background-color: #0070bf;
     color: #ffffff;
+}
+
+.required-field {
+    color: red;
+}
+
+main, .jumbotron {
+    background-color: #ffffff;
+}
+
+.account-page {
+    /*position: fixed;
+    top: 15%;
+    bottom: 15%;
+    left: 18%;
+    right: 14%;*/
+
+    /*position: fixed;
+    top: 20%;*/
+
+    background-color: #ffffff;
+    padding-top: 30px;
+}
+
+.login-jumbotron {
+    padding-bottom: 10px;
 }
