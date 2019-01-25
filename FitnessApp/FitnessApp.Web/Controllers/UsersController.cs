@@ -10,6 +10,7 @@
     using System.Threading.Tasks;
     using System.Linq;
 
+    [Route("users")]
     public class UsersController : Controller
     {
         private readonly IUsersService users;

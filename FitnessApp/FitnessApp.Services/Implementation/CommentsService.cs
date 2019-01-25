@@ -5,14 +5,20 @@
     using Data;
     using Microsoft.EntityFrameworkCore;
     using FitnessApp.Models;
+    using System.Linq;
+    using System.Collections.Generic;
+    using System;
+    using Services.Models.Comments;
 
     public class CommentsService : ICommentsService
     {
         private readonly FitnessDbContext db;
+        private readonly ICloudinaryService cloudinary;
 
-        public CommentsService(FitnessDbContext db)
+        public CommentsService(FitnessDbContext db, ICloudinaryService cloudinary)
         {
             this.db = db;
+            this.cloudinary = cloudinary;
         }
 
         public async Task<bool> AddCommentAsync(string content, string username, int postId)
@@ -51,10 +57,36 @@
             return true;
         }
 
+        public async Task<IEnumerable<CommentsListingModel>> LoadCommentsAsync(int pageSize, int currentPage, int postId)
+        {
+            if(pageSize <= 0 || currentPage <= 0)
+            {
+                throw new InvalidOperationException("Invalid page data!");
+            }
+            var comments = await this.db.Comments.Where(c => c.PostId == postId)
+                .Skip((currentPage - 1) * pageSize)
+                .Take(pageSize)
+                .Select(c => new CommentsListingModel
+                {
+                    Id = c.Id,
+                    Content = c.Content,
+                    UserId = c.UserId,
+                    UserName = c.User.UserName,
+                    ProfilePictureUrl = this.cloudinary.BuildPictureUrl(c.User.ProfilePicture)
+                }).ToListAsync();
+
+            if(comments == null)
+            {
+                throw new InvalidOperationException($"No post with id: {postId} found!");
+            }
+
+            return comments;
+        }
+
         public async Task<bool> RemoveCommentAsync(int commentId, string username)
         {
             var comment = await this.db.Comments.FindAsync(commentId);
-
+            
             if(comment == null)
             {
                 return false;

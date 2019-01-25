@@ -31,25 +31,35 @@
         </div>
     </div>
 
-    <div id="comments" class="row">
-        @foreach (var comment in Model.Comments)
-        {
-            var commentUser = comment.User;
-            <div class="col-md-11 m-1">
-                <a asp-controller="Users" asp-action="Profile" asp-route-username="@commentUser.UserName"><img src="@this.cloudinaryService.BuildPictureUrl(commentUser.ProfilePicture)" style="width: 45px" /> @commentUser.UserName</a> - @comment.Content
+    <input type="hidden" id="pageSize" value="3" />
+    <input type="hidden" id="currentPage" value="1" />
+    <input type="hidden" id="currentId" value="@Model.Id" />
+    <input type="hidden" id="isFirstAjax" value="true"/>
 
-                @if (User.Identity.Name == comment.User.UserName || User.IsInRole(RolesConstants.ADMINISTRATOR_ROLE))
-                {
-                    <a href="#" class="dropdown-toggle" id="commentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-left" id="dropdown-menu-content">
-                        <a class="deleteComment" href="@comment.Id" id="commentOption"><i class="far fa-trash-alt"></i> Delete</a>
-                    </div>
-                }
-            </div>
-        }
+    <button id="viewComments" class="btn btn-default">View Comments</button>
+
+    <div id="comments" class="row" style="display:none">
+        @*@foreach (var comment in Model.Comments)
+            {
+                var commentUser = comment.User;
+                <div class="col-md-11 m-1">
+                    <a asp-controller="Users" asp-action="Profile" asp-route-username="@commentUser.UserName"><img src="@this.cloudinaryService.BuildPictureUrl(commentUser.ProfilePicture)" style="width: 45px" /> @commentUser.UserName</a> - @comment.Content
+
+                    @if (User.Identity.Name == comment.User.UserName || User.IsInRole(RolesConstants.ADMINISTRATOR_ROLE))
+                    {
+                        <a href="#" class="dropdown-toggle" id="commentDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-left" id="dropdown-menu-content">
+                            <a class="deleteComment" href="@comment.Id" id="commentOption"><i class="far fa-trash-alt"></i> Delete</a>
+                        </div>
+                    }
+                </div>
+            }*@
     </div>
+    
+    <button id="moreComments" class="btn btn-primary" style="display:none">More comments</button>
+
     <div class="row">
         <div class="col-md-6">
             <textarea class="form-control" id="commentsTextBox"></textarea>
