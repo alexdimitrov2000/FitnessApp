@@ -51,6 +51,8 @@
                 options.SignIn.RequireConfirmedEmail = false;
             });
 
+            services.ConfigureApplicationCookie(opt => opt.LoginPath = "/Identity/Account/Login");
+
             services.AddMvc(options =>
             {
             //    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
