@@ -28,6 +28,8 @@
             div.append(' : ' + comment);
             textBox.val(' ');
             div.appendTo($('#comments'));
+            $('#comments').show();
+            $('#moreComments').show();
 
         },
         error: function (msg) {
